@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::latest('id')->get();
 
         return view('users.index', compact('users')); // users/index.blade.php
     }
@@ -27,13 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return User::insert([
-            'name' => 'Kouceyla hadji',
-            'email' => 'Kouceylahadji@gmail.com',
-            'phone' => '055555555',
-            'address' => 'Darna',
-            'password' => bcrypt(123456),
-        ]);
+        return view('users.create');
     }
 
     /**
@@ -44,6 +38,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        User::insert([
+            'name' => request('name'),
+            'email' => request('email'),
+            'phone' => request('phone'),
+            'address' => request('address'),
+            'password' => request('password'),
+        ]);
+
+
+        return redirect()->route('users.index')->withSuccess(request('name') . ' was created successfully');
     }
 
     /**
@@ -92,10 +96,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // DB::table('users')
-        //         ->where('id', $id)
-        //         ->delete();
-
         User::destroy($id);
 
         return back()->withSuccess('User deleted successfully!');
