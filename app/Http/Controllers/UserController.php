@@ -15,12 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::where('id', '>', 3)
-                    ->orWhere('id', '<', 100)
-                    ->take(10)
-                    ->skip(10)
-                    ->get();
-        // Object Relational Mapping
+        $users = User::all();
+
+        return view('users.index', compact('users')); // users/index.blade.php
     }
 
     /**
@@ -55,9 +52,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        return "show $id";
+        return $user;
+        // return User::findOrFail($id);
+        // return(DB::table('users')->where('id', $id)->first());
     }
 
     /**
@@ -93,8 +92,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('users')
-                ->where('id', $id)
-                ->delete();
+        // DB::table('users')
+        //         ->where('id', $id)
+        //         ->delete();
+
+        User::destroy($id);
+
+        return back()->withSuccess('User deleted successfully!');
     }
 }
