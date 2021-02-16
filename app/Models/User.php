@@ -32,6 +32,7 @@ class User extends Authenticatable
             'phone'    => 'required|max:255',
             'address'  => 'required|max:255',
             'password' => 'required|confirmed|max:255',
+            'fonction' => 'required|confirmed|max:255',
         ];
 
         if ($for_update) { // creating
