@@ -27,7 +27,7 @@
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->address }}</td>
                         <td>
-                            <a href="" class="btn btn-outline-info"><i class="fas fa-pencil-alt    "></i></a>
+                            <a href="{{ route('users.edit', $user) }}" class="btn btn-outline-info"><i class="fas fa-pencil-alt    "></i></a>
                             <form action="{{ route('users.destroy', $user) }}" method="POST">
                                 @method('DELETE')
                                 @csrf

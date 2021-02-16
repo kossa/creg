@@ -20,7 +20,27 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'address',
     ];
+
+    public static function rules($for_update = false, $id=null)
+    {
+        $rules = [
+            'name'     => 'required|min:2|max:255',
+            'email'    => 'required|email|max:255|unique:users,email',
+            'phone'    => 'required|max:255',
+            'address'  => 'required|max:255',
+            'password' => 'required|confirmed|max:255',
+        ];
+
+        if ($for_update) { // creating
+            $rules['email']    = 'required|email|max:255|unique:users,email,'.$id;
+            $rules['password'] = 'nullable|confirmed|max:255';
+        }
+
+        return $rules;
+    }
 
     /**
      * The attributes that should be hidden for arrays.

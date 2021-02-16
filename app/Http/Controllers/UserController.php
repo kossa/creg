@@ -38,14 +38,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::insert([
-            'name' => request('name'),
-            'email' => request('email'),
-            'phone' => request('phone'),
-            'address' => request('address'),
-            'password' => request('password'),
-        ]);
+        $this->validate(request(), User::rules());
 
+        $data = $request->all();
+        $data['password'] = bcrypt(request('password'));
+
+        User::create($data);
 
         return redirect()->route('users.index')->withSuccess(request('name') . ' was created successfully');
     }
@@ -69,11 +67,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        DB::table('users')
-                ->where('id', $id)
-                ->update(['address' => 'address modified']);
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -83,9 +79,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $this->validate(request(), User::rules(true, $user->id));
+
+        $data = array_filter($request->all());
+
+        if (request()->has('password') && request('password')) {
+            $data['password'] = bcrypt(request('password'));
+        }
+
+        $user->update($data);
+
+        return redirect()->route('users.index')->withSuccess(request('name') . ' was updated successfully');
     }
 
     /**
