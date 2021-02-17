@@ -6,6 +6,11 @@
 
         <a class="btn btn-outline-danger my-4" href="/users/create">Add</a>
 
+        <form action="" class="form-inline my-3">
+            <input type="search" name="q" class="form-control" placeholder="Recherche" value="{{ request('q') }}">
+            <button class="btn btn-info"><i class="fas fa-search"></i></button>
+        </form>
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -23,10 +28,10 @@
 
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <td>{!! $user->nameSearched !!}</td>
+                        <td>{!! $user->emailSearched !!}</td>
                         <td>{{ $user->phone }}</td>
-                        <td>{{ $user->address }}</td>
+                        <td>{!! $user->addressSearched !!}</td>
                         <td>{{ $user->created_at_formatted }}</td>
                         <td>
                             <a href="{{ route('users.edit', $user) }}" class="btn btn-outline-info"><i class="fas fa-pencil-alt    "></i></a>

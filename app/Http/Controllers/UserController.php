@@ -15,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest('id')->paginate(20);
+        $users = User::latest('id')
+                ->recherche()
+                ->paginate(20);
 
         return view('users.index', compact('users')); // users/index.blade.php
     }

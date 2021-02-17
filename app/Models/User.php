@@ -31,7 +31,6 @@ class User extends Authenticatable
             'phone'    => 'required|max:255',
             'address'  => 'required|max:255',
             'password' => 'required|confirmed|max:255',
-            'fonction' => 'required|confirmed|max:255',
         ];
 
         if ($for_update) { // creating
@@ -65,4 +64,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeRecherche($query)
+    {
+        $query->where('name', 'like', '%'.request('q').'%')
+                ->orWhere('email', 'like', '%'.request('q').'%')
+                ->orWhere('address', 'like', '%'.request('q').'%');
+    }
+
+    public function getNameSearchedAttribute()
+    {
+        return str_replace(request('q'), "<mark>".request('q')."</mark>", strip_tags($this->name));
+    }
+
+    public function getEmailSearchedAttribute()
+    {
+        return str_replace(request('q'), "<mark>".request('q')."</mark>", strip_tags($this->email));
+    }
+
+    public function getAddressSearchedAttribute()
+    {
+        return str_replace(request('q'), "<mark>".request('q')."</mark>", strip_tags($this->address));
+    }
 }
