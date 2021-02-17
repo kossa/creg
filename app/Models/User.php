@@ -43,6 +43,11 @@ class User extends Authenticatable
         return $rules;
     }
 
+    public function getCreatedAtFormattedAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

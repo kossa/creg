@@ -22,11 +22,12 @@ class users extends Seeder
 
         for ($i = 1; $i <= 50 ; $i++) {
             array_push($data, [
-                'name' => $faker->name,
-                'phone' => $faker->phoneNumber,
-                'email' => $faker->email,
-                'password' => bcrypt(123456),
-                'address' => $faker->address,
+                'name'       => $faker->name,
+                'phone'      => $faker->phoneNumber,
+                'email'      => $faker->email,
+                'password'   => bcrypt(123456),
+                'address'    => $faker->address,
+                'created_at' => $faker->dateTime(),
             ]);
         }
 
