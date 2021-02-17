@@ -86,4 +86,14 @@ class User extends Authenticatable
     {
         return str_replace(request('q'), "<mark>".request('q')."</mark>", strip_tags($this->address));
     }
+
+    /*
+    |------------------------------------------------------------------------------------
+    | Relations
+    |------------------------------------------------------------------------------------
+    */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

@@ -9,3 +9,5 @@
 
 Route::get('users/{id}/delete', 'UserController@destroy');
 Route::resource('users', 'UserController');
+
+Route::resource('articles', 'ArticleController');

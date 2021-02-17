@@ -17,6 +17,7 @@ class UserController extends Controller
     {
         $users = User::orderBy(request('orderBy', 'id'))
                 ->recherche()
+                ->withCount('articles')
                 ->paginate(20)
                 ->withQueryString();
 
@@ -59,9 +60,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
-        // return User::findOrFail($id);
-        // return(DB::table('users')->where('id', $id)->first());
+        $user->load('articles.user');
+
+        return view('users.show', compact('user'));
     }
 
     /**
