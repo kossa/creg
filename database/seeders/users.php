@@ -20,7 +20,7 @@ class users extends Seeder
 
         $data = [];
 
-        for ($i = 1; $i <= 50 ; $i++) {
+        for ($i = 1; $i <= 500 ; $i++) {
             array_push($data, [
                 'name'       => $faker->name,
                 'phone'      => $faker->phoneNumber,

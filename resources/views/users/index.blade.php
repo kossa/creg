@@ -41,4 +41,6 @@
             </tbody>
         </table>
 
+        {{ $users->links() }}
+
 @endsection
