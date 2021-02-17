@@ -15,9 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest('id')
+        $users = User::orderBy(request('orderBy', 'id'))
                 ->recherche()
-                ->paginate(20);
+                ->paginate(20)
+                ->withQueryString();
 
         return view('users.index', compact('users')); // users/index.blade.php
     }

@@ -15,11 +15,11 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Créé le</th>
+                    <th><a href="?orderBy=name">Name</a></th>
+                    <th><a href="?orderBy=email">Email</a></th>
+                    <th><a href="?orderBy=phone">Phone</a></th>
+                    <th><a href="?orderBy=address">Address</a></th>
+                    <th><a href="?orderBy=created_at">Créé le</a></th>
                     <th>Actions</th>
                 </tr>
             </thead>

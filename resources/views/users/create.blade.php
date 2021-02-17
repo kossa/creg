@@ -3,7 +3,7 @@
 @section('content')
 
         <h1>New user</h1>
-
+        <mark>MArked text</mark>
         <form action="{{ route('users.store') }}" method='POST'>
             @csrf
 
