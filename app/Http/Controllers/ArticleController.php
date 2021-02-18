@@ -9,7 +9,7 @@ class ArticleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only('create', 'store', 'edit', 'update', 'delete');
+        $this->middleware('role')->only('create', 'store', 'edit', 'update', 'delete');
     }
 
     public function index()
