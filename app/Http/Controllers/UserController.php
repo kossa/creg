@@ -47,7 +47,8 @@ class UserController extends Controller
         $data = $request->all();
         $data['password'] = bcrypt(request('password'));
 
-        User::create($data);
+        $user = User::create($data);
+        $user->roles()->attach(request('roles'));
 
         return redirect()->route('users.index')->withSuccess(request('name') . ' was created successfully');
     }
@@ -85,6 +86,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        return request()->all();
         $this->validate(request(), User::rules(true, $user->id));
 
         $data = array_filter($request->all());
@@ -94,6 +96,9 @@ class UserController extends Controller
         }
 
         $user->update($data);
+        // $user->roles()->detach();
+        // $user->roles()->attach(request('roles'));
+        $user->roles()->sync(request('roles'));
 
         return redirect()->route('users.index')->withSuccess(request('name') . ' was updated successfully');
     }

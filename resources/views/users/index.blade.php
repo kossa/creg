@@ -21,6 +21,7 @@
                     <th><a href="?orderBy=address">Address</a></th>
                     <th><a href="?orderBy=created_at">Créé le</a></th>
                     <th><a href="?orderBy=created_at">Nb articles</a></th>
+                    <th>Roles</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -35,6 +36,7 @@
                         <td>{!! $user->addressSearched !!}</td>
                         <td>{{ $user->created_at_formatted }}</td>
                         <td>{{ $user->articles_count }}</td>
+                        <td>{{ $user->roles->implode('name', ', ') }}</td>
                         <td>
                             <a href="{{ route('users.edit', $user) }}" class="btn btn-outline-info"><i class="fas fa-pencil-alt    "></i></a>
                             <form action="{{ route('users.destroy', $user) }}" method="POST">

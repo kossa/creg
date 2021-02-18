@@ -29,6 +29,20 @@
             </div>
 
             <div class="form-group">
+                <label>Roles</label>
+                @php
+                    $roles = App\Models\Role::all();
+                    $user_roles_id = $user->roles->pluck('id')->toArray();
+                @endphp
+                <select name="roles[]" class="form-control" multiple style='height: 150px'>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}" {{ in_array($role->id, $user_roles_id) ? 'selected' : '' }}>{{ $role->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+
+            <div class="form-group">
                 <label>Repeat password</label>
                 <input type="password" name="password_confirmation" id="" class="form-control">
             </div>

@@ -20,11 +20,11 @@ class users extends Seeder
 
         $data = [];
 
-        for ($i = 1; $i <= 500 ; $i++) {
+        for ($i = 1; $i <= 50 ; $i++) {
             array_push($data, [
                 'name'       => $faker->name,
                 'phone'      => $faker->phoneNumber,
-                'email'      => $faker->email,
+                'email'      => $faker->unique()->email,
                 'password'   => bcrypt(123456),
                 'address'    => $faker->address,
                 'created_at' => $faker->dateTime(),
