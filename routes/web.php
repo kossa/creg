@@ -13,6 +13,8 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', 'PageController@home');
+Route::get('contact', 'PageController@contact');
+Route::post('contact', 'PageController@postContact');
 
 Route::get('users/{id}/delete', 'UserController@destroy');
 Route::resource('users', 'UserController');
