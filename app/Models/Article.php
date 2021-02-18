@@ -9,6 +9,8 @@ class Article extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'body', 'image', 'published_at'];
+
     /*
     |------------------------------------------------------------------------------------
     | Relations
