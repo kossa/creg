@@ -20,4 +20,21 @@ class Article extends Model
     {
         return $this->belongsTo(User::class)->withDefault();
     }
+
+    /*
+    |------------------------------------------------------------------------------------
+    | Attributes
+    |------------------------------------------------------------------------------------
+    */
+
+    public function getImageAttribute()
+    {
+        $image = $this->attributes['image'];
+
+        if (\Str::startsWith($image, 'http')) {
+            return $image;
+        }
+
+        return 'uploads/' . $image;
+    }
 }

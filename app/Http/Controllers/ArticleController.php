@@ -14,7 +14,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = Article::with('user')->paginate(100);
+        $articles = Article::with('user')->paginate(18);
 
         return view('articles.index', compact('articles'));
     }
@@ -32,7 +32,9 @@ class ArticleController extends Controller
             'published_at' => 'required|after:now',
         ]);
 
-        auth()->user()->articles()->create(request()->all() + ['image' => 'test']);
+        $path = request()->image->store('images');
+
+        auth()->user()->articles()->create(['image' => $path] + request()->all());
 
         return redirect()->route('articles.index')->withSuccess('Article created successfully');
     }

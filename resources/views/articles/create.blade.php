@@ -3,7 +3,7 @@
 @section('content')
 
         <h1>New article for {{ auth()->user()->name }}</h1>
-        <form action="{{ route('articles.store') }}" method='POST'>
+        <form action="{{ route('articles.store') }}" method='POST' enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -20,6 +20,12 @@
                 <label>Body</label>
                 <textarea name="body" id="" cols="30" rows="2" class="form-control">{{ old('body') }}</textarea>
             </div>
+
+            <div class="form-group">
+                <label>Image</label>
+                <input type="file" name="image" class="form-control">
+            </div>
+
 
             <button class="btn btn-block btn-lg btn-dark">Submit</button>
 
