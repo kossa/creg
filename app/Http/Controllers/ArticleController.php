@@ -30,7 +30,7 @@ class ArticleController extends Controller
             'name' => 'required',
             'body' => 'required',
             'published_at' => 'required|after:now',
-            'image' => 'required|mimes:jpg,bmp,png|max:' . 1024*4,
+            'image' => 'required|image|mimes:jpg,bmp,png|max:' . 1024*4,
         ]);
 
         $path = request()->image->store('images');
