@@ -28,4 +28,12 @@ class PageController extends Controller
 
         return back()->withSuccess('Thank you for you message');
     }
+
+    public function graph()
+    {
+        $labels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+        $data = [12, 19, 3, 5, 2, 3];
+
+        return view('graph', compact('labels', 'data'));
+    }
 }

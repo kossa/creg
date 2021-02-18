@@ -13,6 +13,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', 'PageController@home');
+Route::get('graph', 'PageController@graph');
 Route::get('contact', 'PageController@contact');
 Route::post('contact', 'PageController@postContact');
 
